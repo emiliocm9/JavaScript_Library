@@ -1,5 +1,5 @@
-const myContainer = document.querySelector('.library-container');
 let myLibrary = [];
+const myContainer = document.querySelector('.library-container');
 
 function Book(title, author, year, pages, read) {
   this.title = title;
@@ -16,7 +16,7 @@ function addBookToLibrary(title, author, year, pages, read) {
 }
 
 function bookDisplay(myLibrary) {
-  myLibrary.forEach(function(book){
+  myLibrary.forEach(function(book) {
     myContainer.innerHTML = `<div class="card">
       <div class="card-body">
         <h1 class="card-title">Title:${book.title}</h1>
@@ -30,4 +30,5 @@ function bookDisplay(myLibrary) {
 }
 
 addBookToLibrary('otherBook', 'Emilio', 2020, 234, true);
+addBookToLibrary('firstBook', 'Jamez', 1987, 536, false);
 bookDisplay(myLibrary);
