@@ -9,6 +9,26 @@ function myBook(title, author, year, pages, read) {
   this.read = read;
 }
 
+function uploadBook() {
+  let savebutton = document.querySelector("#add-button")
+
+  savebutton.addEventListener("click", function() {
+    let title = document.querySelector("#title").value;
+    let author = document.querySelector("#title").value;
+    let year = document.querySelector("#title").value;
+    let pages = document.querySelector("#title").value;
+    let read = document.querySelector("#title").checked;
+
+    $('#add-button').submit(function(e) {
+      e.preventDefault();
+      $('#IDModal').modal('toggle');
+      return false;
+    });
+
+    addBookToLibrary(title, author, year, pages, read);
+  });
+}
+
 function addBookToLibrary(title, author, year, pages, read) {
   let userBook = new myBook(title, author, year, pages, read);
   myLibrary.push(userBook);
@@ -44,6 +64,6 @@ function deleteBook(myCard, bookIndex) {
   });
 }
 
-
+uploadBook();
 addBookToLibrary('otherBook', 'Emilio', 2020, 234, true);
 addBookToLibrary('firstBook', 'Jamez', 1987, 536, false);
