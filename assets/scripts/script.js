@@ -19,12 +19,6 @@ function uploadBook() {
     let pages = document.querySelector("#title").value;
     let read = document.querySelector("#title").checked;
 
-    $('#add-button').submit(function(e) {
-      e.preventDefault();
-      $('#IDModal').modal('toggle');
-      return false;
-    });
-
     addBookToLibrary(title, author, year, pages, read);
   });
 }
