@@ -41,18 +41,31 @@ function bookDisplay(book) {
       <h1 class="card-title">Author:${book.author}</h1>
       <h1 class="card-title">Year:${book.year}</h1>
       <h1 class="card-title">Pages:${book.pages}</h1>
-      <h1 class="card-title" id="read-title">Read:${book.read}</h1>
+      <h1 class="card-title border border-info" class="read-title">Read:${book.read}</h1>
     </div>
     <label for="read-check">
       <input type="checkbox" id="read-check"/><p>Read</p>
     </label>
   <button id="delete" class="remove">Delete</button>`;
 
-  
   deleteBook(myCard, bookIndex);
 
+  const checkBook = myCard.querySelector("#read-check");
+  // toggleStatus(myCard, book);
+
+  toggle(checkBook, myCard, book);
+
+  function toggleStatus(myCard, book) {
+    const readTitle = myCard.querySelector(".read-title");
+    if (book.read) {
+      readTitle.textContent = 'Read: true';
+    }
+    else {
+      readTitle.textContent = 'Read: false';
+    }
+  }
+
   myContainer.appendChild(myCard);
-  toggle(book);
 }
 
 function deleteBook(myCard, bookIndex) {
@@ -63,28 +76,17 @@ function deleteBook(myCard, bookIndex) {
   });
 }
 
-function toggle(book) {
-  const checkBook = document.querySelector("#read-check");
-  checkBook.addEventListener("click", function(){
-    if (book.read == true) {
+function toggle(checkBook, myCard, book) {
+  checkBook.addEventListener("change", function(){
+    if (book.read) {
       book.read = false;
-      toggleStatus(book);
+      toggleStatus();
     }
     else {
       book.read = true;
-      toggleStatus(book);
+      toggleStatus();
     }
   });
-}
-
-function toggleStatus(book) {
-  const readTitle = document.querySelector("#read-title");
-  if (book.read) {
-    readTitle.textContent = 'Read: true';
-  }
-  else {
-    readTitle.textContent = 'Read: false';
-  }
 }
 
 uploadBook();
