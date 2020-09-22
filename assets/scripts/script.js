@@ -41,7 +41,7 @@ function bookDisplay(book) {
       <h1 class="card-title">Author:${book.author}</h1>
       <h1 class="card-title">Year:${book.year}</h1>
       <h1 class="card-title">Pages:${book.pages}</h1>
-      <h1 class="card-title border border-info read-title"></h1>
+      <h1 class="card-title read-title"></h1>
     </div>
     <label for="read-check">
       <input type="checkbox" class="read-check"/><p>Read</p>
