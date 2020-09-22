@@ -36,32 +36,56 @@ function bookDisplay(book) {
   myCard.className = "card w-50";
   myCard.setAttribute("data-index", `${bookIndex}`);
   myCard.innerHTML = `
-    <div class="card-body">
+    <div class="card-body bg-info">
       <h1 class="card-title">Title:${book.title}</h1>
       <h1 class="card-title">Author:${book.author}</h1>
       <h1 class="card-title">Year:${book.year}</h1>
       <h1 class="card-title">Pages:${book.pages}</h1>
-      <h1 class="card-title border border-info" class="read-title">Read:${book.read}</h1>
+      <h1 class="card-title border border-info read-title"></h1>
     </div>
     <label for="read-check">
-      <input type="checkbox" id="read-check"/><p>Read</p>
+      <input type="checkbox" class="read-check"/><p>Read</p>
     </label>
   <button id="delete" class="remove">Delete</button>`;
 
   deleteBook(myCard, bookIndex);
 
-  const checkBook = myCard.querySelector("#read-check");
-  // toggleStatus(myCard, book);
+  const checkBook = myCard.querySelector(".read-check");
+  const readText = myCard.querySelector(".read-title");
+  toggleCheckBox();
+  nameToggle(readText);
 
-  toggle(checkBook, myCard, book);
-
-  function toggleStatus(myCard, book) {
-    const readTitle = myCard.querySelector(".read-title");
+  checkBook.addEventListener("change", function(){
     if (book.read) {
-      readTitle.textContent = 'Read: true';
+      book.read = false;
+      toggleCheckBox();
     }
     else {
-      readTitle.textContent = 'Read: false';
+      book.read = true;
+      toggleCheckBox();
+    }
+  });
+
+  function nameToggle(readText) {
+    if (book.read) {
+      readText.textContent = 'Read: true';
+    } else {
+      readText.textContent = 'Read: false';
+    }
+  }
+
+  function toggleCheckBox() {
+    const card = myCard.querySelector(".card-body");
+    if (book.read) {
+      checkBook.checked = true;
+      card.classList.remove("bg-info");
+      card.classList.add("bg-success");
+      nameToggle(readText)
+    } else {
+      checkBook.checked = false;
+      card.classList.remove("bg-success");
+      card.classList.add("bg-info");
+      nameToggle(readText)
     }
   }
 
@@ -73,19 +97,6 @@ function deleteBook(myCard, bookIndex) {
     let element = document.querySelector(`[data-index="${bookIndex}"]`);
     myContainer.removeChild(element);
     delete myLibrary(bookIndex);
-  });
-}
-
-function toggle(checkBook, myCard, book) {
-  checkBook.addEventListener("change", function(){
-    if (book.read) {
-      book.read = false;
-      toggleStatus();
-    }
-    else {
-      book.read = true;
-      toggleStatus();
-    }
   });
 }
 
