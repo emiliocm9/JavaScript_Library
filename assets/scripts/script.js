@@ -1,4 +1,4 @@
-let myLibrary = [];
+const myLibrary = [];
 const myContainer = document.querySelector('.library-container');
 
 function myBook(title, author, year, pages, read) {
@@ -9,15 +9,39 @@ function myBook(title, author, year, pages, read) {
   this.read = read;
 }
 
-function uploadBook() {
-  let savebutton = document.querySelector("#add-button")
+function toggleCheckBox() {
+  const card = myCard.querySelector('.card-body');
+  if (book.read) {
+    checkBook.checked = true;
+    card.classList.remove('bg-info');
+    card.classList.add('bg-success');
+    nameToggle(readText)
+  } else {
+    checkBook.checked = false;
+    card.classList.remove('bg-success');
+    card.classList.add('bg-info');
+    nameToggle(readText)
+  }
+}
 
-  savebutton.addEventListener("click", function() {
-    let title = document.querySelector("#title").value;
-    let author = document.querySelector("#author").value;
-    let year = document.querySelector("#year").value;
-    let pages = document.querySelector("#pages").value;
-    let read = document.querySelector("#read").checked;
+function nameToggle(readText) {
+  if (book.read) {
+    readText.textContent = 'Read: true';
+  } else {
+    readText.textContent = 'Read: false';
+  }
+}
+
+
+function uploadBook() {
+  const savebutton = document.querySelector('#add-button')
+
+  savebutton.addEventListener('click', function() {
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const year = document.querySelector('#year').value;
+    const pages = document.querySelector('#pages').value;
+    const read = document.querySelector('#read').checked;
 
     addBookToLibrary(title, author, year, pages, read);
   });
@@ -32,9 +56,9 @@ function addBookToLibrary(title, author, year, pages, read) {
 function bookDisplay(book) {
   let bookIndex = myLibrary.indexOf(book);
 
-  let myCard = document.createElement("div");
-  myCard.className = "card w-50 p-4";
-  myCard.setAttribute("data-index", `${bookIndex}`);
+  let myCard = document.createElement('div');
+  myCard.className = 'card w-50 p-4';
+  myCard.setAttribute('data-index', `${bookIndex}`);
   myCard.innerHTML = `
     <div class="card-body bg-info">
       <h2 class="card-title"><span class="font-weight-bold">Title: </span>${book.title}</h2>
@@ -51,12 +75,12 @@ function bookDisplay(book) {
 
   deleteBook(myCard, bookIndex);
 
-  const checkBook = myCard.querySelector(".read-check");
-  const readText = myCard.querySelector(".read-title");
+  const checkBook = myCard.querySelector('.read-check');
+  const readText = myCard.querySelector('.read-title');
   toggleCheckBox();
   nameToggle(readText);
 
-  checkBook.addEventListener("change", function(){
+  checkBook.addEventListener('change', function() {
     if (book.read) {
       book.read = false;
       toggleCheckBox();
@@ -67,34 +91,11 @@ function bookDisplay(book) {
     }
   });
 
-  function nameToggle(readText) {
-    if (book.read) {
-      readText.textContent = 'Read: true';
-    } else {
-      readText.textContent = 'Read: false';
-    }
-  }
-
-  function toggleCheckBox() {
-    const card = myCard.querySelector(".card-body");
-    if (book.read) {
-      checkBook.checked = true;
-      card.classList.remove("bg-info");
-      card.classList.add("bg-success");
-      nameToggle(readText)
-    } else {
-      checkBook.checked = false;
-      card.classList.remove("bg-success");
-      card.classList.add("bg-info");
-      nameToggle(readText)
-    }
-  }
-
   myContainer.appendChild(myCard);
 }
 
 function deleteBook(myCard, bookIndex) {
-  myCard.querySelector("#delete").addEventListener("click", function() {
+  myCard.querySelector('#delete').addEventListener('click', function() {
     let element = document.querySelector(`[data-index="${bookIndex}"]`);
     myContainer.removeChild(element);
     delete myLibrary(bookIndex);
