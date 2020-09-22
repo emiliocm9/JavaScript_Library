@@ -33,20 +33,21 @@ function bookDisplay(book) {
   let bookIndex = myLibrary.indexOf(book);
 
   let myCard = document.createElement("div");
-  myCard.className = "card w-50";
+  myCard.className = "card w-50 p-4";
   myCard.setAttribute("data-index", `${bookIndex}`);
   myCard.innerHTML = `
     <div class="card-body bg-info">
-      <h1 class="card-title">Title:${book.title}</h1>
-      <h1 class="card-title">Author:${book.author}</h1>
-      <h1 class="card-title">Year:${book.year}</h1>
-      <h1 class="card-title">Pages:${book.pages}</h1>
-      <h1 class="card-title read-title"></h1>
+      <h2 class="card-title"><span class="font-weight-bold">Title: </span>${book.title}</h2>
+      <h3 class="card-title"><span class="font-weight-bold">Author: </span>${book.author}</h3>
+      <h4 class="card-title"><span class="font-weight-bold">Year: </span>${book.year}</h4>
+      <h5 class="card-title"><span class="font-weight-bold">Pages: </span>${book.pages}</h5>
+      <h6 class="card-title read-title"></h6>
     </div>
-    <label for="read-check">
-      <input type="checkbox" class="read-check"/><p>Read</p>
+    <label for="read-check" class="d-flex align-items-center  p-3">
+      <p class="font-weight-bold">Read</p>
+      <input type="checkbox" class="read-check ml-2 mb-3"/>
     </label>
-  <button id="delete" class="remove">Delete</button>`;
+  <button id="delete" class="remove w-25 bg-danger border-0 rounded mx-auto py-1">Delete</button>`;
 
   deleteBook(myCard, bookIndex);
 
