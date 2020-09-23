@@ -49,6 +49,7 @@ To deploy this repo, we used Netifly web app.
 - Github: [@emiliocm9](https://github.com/emiliocm9)
 - Twitter: [@emiliocm31](https://twitter.com/emiliocm31)
 - Email: [email](emilio.contreras97@gmail.com)
+- Linkedin: [@linkedin](https://www.linkedin.com/in/emiliocm31/) 
 
 👤 **James Chigozie Odufu**
 
