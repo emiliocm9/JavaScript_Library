@@ -21,10 +21,10 @@ function bookDisplay(book) {
   const bookIndex = myLibrary.indexOf(book);
 
   const myCard = document.createElement('div');
-  myCard.className = 'card w-50 p-4';
+  myCard.className = 'card w-33 p-4';
   myCard.setAttribute('data-index', `${bookIndex}`);
   myCard.innerHTML = `
-    <div class="card-body bg-info">
+    <div class="card-body bg-info text-center shadow-gen">
       <h2 class="card-title"><span class="font-weight-bold">Title: </span>${book.title}</h2>
       <h3 class="card-title"><span class="font-weight-bold">Author: </span>${book.author}</h3>
       <h4 class="card-title"><span class="font-weight-bold">Year: </span>${book.year}</h4>
