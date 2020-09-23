@@ -21,10 +21,10 @@ function bookDisplay(book) {
   const bookIndex = myLibrary.indexOf(book);
 
   const myCard = document.createElement('div');
-  myCard.className = 'card w-33 p-4';
+  myCard.className = 'card w-50 p-4';
   myCard.setAttribute('data-index', `${bookIndex}`);
   myCard.innerHTML = `
-    <div class="card-body bg-info text-center shadow-gen">
+    <div class="card-body bg-info">
       <h2 class="card-title"><span class="font-weight-bold">Title: </span>${book.title}</h2>
       <h3 class="card-title"><span class="font-weight-bold">Author: </span>${book.author}</h3>
       <h4 class="card-title"><span class="font-weight-bold">Year: </span>${book.year}</h4>
@@ -96,7 +96,25 @@ function uploadBook() {
     const pages = document.querySelector('#pages').value;
     const read = document.querySelector('#read').checked;
 
-    addBookToLibrary(title, author, year, pages, read);
+    // Validations
+    const errorTitle = document.querySelector('#error-title');
+    const errorAuthor = document.querySelector('#error-author');
+    const errorYear = document.querySelector('#error-year');
+    const errorPage = document.querySelector('#error-page');
+    const dataDismiss = document.querySelector('#add-button');
+    if (title === '' || title.length < 5 || title.length > 300) {
+      errorTitle.className = 'd-block text-danger';
+    } else if (author === '' || author.length < 3 || author.length > 20) {
+      errorAuthor.className = 'd-block text-danger';
+    } else if (year === '' || year.length !== 4 ) {
+      errorYear.className = 'd-block text-danger';
+    } else if (pages === '' || pages < 1) {
+      errorPage.className = 'd-block text-danger';
+    } else {
+      addBookToLibrary(title, author, year, pages, read);
+      dataDismiss.setAttribute('data-dismiss', 'modal');
+      alert('Create a new book?');
+    }
   });
 }
 
